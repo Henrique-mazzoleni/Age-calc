@@ -12,16 +12,16 @@ export default function Home() {
     const then = new Date(year, month - 1, day);
 
     let isLeap = false;
-    const currYear = now.getFullYear();
-    if (currYear % 4 === 0) {
-      if (currYear % 100 === 0) {
-        if (currYear % 400 === 0) isLeap = true;
+    const thenYear = then.getFullYear();
+    if (thenYear % 4 === 0) {
+      if (thenYear % 100 === 0) {
+        if (thenYear % 400 === 0) isLeap = true;
       } else {
         isLeap = true;
       }
     }
 
-    const prevMonth = now.getMonth() - 1;
+    const prevMonth = then.getMonth() + 1;
     let plusDays = 0;
     if ([1, 3, 5, 7, 8, 10, 12].includes(prevMonth)) plusDays = 31;
     else if ([4, 6, 9, 11].includes(prevMonth)) plusDays = 30;
