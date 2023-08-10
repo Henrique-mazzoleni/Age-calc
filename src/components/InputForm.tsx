@@ -60,10 +60,18 @@ const InputForm: React.FC<ChildProps> = ({ onCalcAge }) => {
       ? 30
       : 28 + isLeap;
 
+    const now = new Date();
+    const isInPast =
+      now.getFullYear() > Number(year) ||
+      (now.getFullYear() === Number(year) &&
+        (now.getMonth() > Number(month) - 1 ||
+          (now.getMonth() === Number(month) - 1 &&
+            now.getDate() >= Number(day))));
+
     setIsValid({
       day: !day || (Number(day) <= numDays && Number(day) > 0),
       month: !month || (Number(month) < 13 && Number(month) > 0),
-      year: !year || Number(year) <= new Date().getFullYear(),
+      year: !year || isInPast,
     });
 
     setIsValid((state) => {
